@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -31,9 +31,14 @@ const App = () => {
 
     const toggleSize = () => {
         setArrSize(arrSize === 20 ? 120 : 20 );
-        setSpeeds(arrSize === 20 ? speedsFast : speedsSlow);
         setArr(generateArray(arrSize === 20 ? 120 : 20));
     };
+
+    return (
+        <div>
+            <ArrayBars arr={arr} arrSize={arrSize} />
+        </div>
+    )
 
 };
 
