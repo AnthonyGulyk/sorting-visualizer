@@ -1,3 +1,4 @@
+import { Button } from '@mui/material'
 import React, { useState } from 'react';
 import './App.css';
 
@@ -5,6 +6,23 @@ interface Props {
     arr: Array<number>;
     arrSize: number;
 };
+
+interface buttonProps {
+    isSorting: boolean;
+    newArray: any;
+};
+
+const NewArrayButton: React.FC<buttonProps> = ({ isSorting, newArray }) => (
+    <Button
+        variant='contained'
+        color='secondary'
+        disabled={isSorting}
+        onClick={newArray}
+    >
+        New Array
+    </Button>
+);
+
 
 const ArrayBars: React.FC<Props> =({arr, arrSize}) => (
     <div className='bars'>
