@@ -1,28 +1,10 @@
 import { Button } from '@mui/material'
 import React, { useState } from 'react';
 import './App.css';
-import NewArrayButton from './buttons/NewArrayButton';
-
-interface Props {
-    arr: Array<number>;
-    arrSize: number;
-};
-
-const ArrayBars: React.FC<Props> =({arr, arrSize}) => (
-    <div className='bars'>
-        {arr.map((value: number, idx: number) => (
-            <div
-                className='array-bar'
-                key={idx}
-                style={{ backgroundColor: 'navy', height: `${value}px`, width: arrSize === 20 ? '2%' : '.5%' }}
-                >
-                </div>
-        ))}
-        </div>
-);
+import AllButtons from './buttons/AllButtons'
+import ArrayBars from './utils/ArrayBars'
 
 const generateArray = (arrSize: number) => Array.from({ length: arrSize }, () => Math.floor(Math.random() * (100 - 5 + 1) * 5));
-
 
 const App = () => {
     const [arr, setArr] = useState<Array<number>>(generateArray(20));
@@ -37,11 +19,10 @@ const App = () => {
 
     return (
         <div>
+            <AllButtons arr={arr} newArray={newArray} toggleSize={toggleSize} />
             <ArrayBars arr={arr} arrSize={arrSize} />
         </div>
     )
-
 };
-
 
 export default App;
