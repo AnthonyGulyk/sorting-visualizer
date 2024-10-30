@@ -1,4 +1,3 @@
-import { Button } from '@mui/material'
 import React, { useState } from 'react';
 import './App.css';
 import AllButtons from './buttons/AllButtons'
@@ -19,8 +18,9 @@ const App = () => {
 
     return (
         <div>
-            <AllButtons arr={arr} newArray={newArray} toggleSize={toggleSize} />
             <ArrayBars arr={arr} arrSize={arrSize} />
+            <button onClick={newArray}>Generate New Array</button>
+            <button onClick={toggleSize}>Toggle Array Size</button>
         </div>
     )
 };
