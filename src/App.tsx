@@ -16,11 +16,26 @@ const App = () => {
         setArr(generateArray(arrSize === 20 ? 120 : 20));
     };
 
+    const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newSize = parseInt(e.target.value, 10);
+        setArrSize(newSize);
+        setArr(generateArray(newSize));
+    };
+
     return (
         <div>
             <ArrayBars arr={arr} arrSize={arrSize} />
             <button onClick={newArray}>Generate New Array</button>
-            <button onClick={toggleSize}>Toggle Array Size</button>
+            <div>
+                <label>Array Size: {arrSize}</label>
+                <input
+                    type="range"
+                    min="10"
+                    max="90"
+                    value={arrSize}
+                    onChange={handleSliderChange}
+                />
+            </div>
         </div>
     )
 };
