@@ -25,6 +25,7 @@ const App = () => {
         <div>
             <ArrayBars arr={arr} arrSize={arrSize} />
             <button onClick={newArray}>Generate New Array</button>
+            <button>Bubble Sort</button>
             <div>
                 <label>Array Size: {arrSize}</label>
                 <input
