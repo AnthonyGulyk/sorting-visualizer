@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import AllButtons from './buttons/AllButtons'
 import ArrayBars from './utils/ArrayBars'
 
 const generateArray = (arrSize: number) => Array.from({ length: arrSize }, () => Math.floor(Math.random() * (100 - 5 + 1) * 5));
