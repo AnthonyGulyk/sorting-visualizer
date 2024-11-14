@@ -8,6 +8,7 @@ const App = () => {
     const [arr, setArr] = useState<Array<number>>(generateArray(20));
     const [arrSize, setArrSize] = useState<number>(20);
     const [isSorting, setIsSorting] = useState(false);
+    const [highlighted, setHighlighted] = useState<Array<number>>([]);
 
     const newArray = () => {
         if (isSorting) return;
@@ -29,11 +30,14 @@ const App = () => {
                 if (array[j] > array[j + 1]) {
                     [array[j], array[j + 1]] = [array[j + 1], array[j]];
                     setArr([...array]);
-                    await new Promise((resolve) => setTimeout(resolve, 100));
+                }
+                await new Promise((resolve) => setTimeout(resolve, 100));
+                setHighlighted([]);
                 }
             }
+            setIsSorting(false);
         }
-    }
+    
 
     return (
         <div>
