@@ -17,6 +17,8 @@ const App = () => {
 
     const newArray = () => {
         if (isSorting) return;
+        setHighlighted([]);
+        setSorted([]);
         setArr(generateArray(arrSize));
     };
 
