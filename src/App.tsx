@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import ArrayBars from './utils/ArrayBars'
 
@@ -10,6 +10,9 @@ const App = () => {
     const [isSorting, setIsSorting] = useState(false);
     const [highlighted, setHighlighted] = useState<Array<number>>([]);
     const [sorted, setSorted] = useState<Array<number>>([]);
+    const [speed, setSpeed] = useState<number>(100);
+    const speedRef = useRef(speed);
+    speedRef.current = speed;
 
     const newArray = () => {
         if (isSorting) return;
@@ -28,13 +31,13 @@ const App = () => {
         let array = [...arr];
 
         for (let i = 0; i < array.length - 1; i++) {
-            for (let j = 0; j < array.length - 1; j++) {
+            for (let j = 0; j < array.length - i - 1; j++) {
                 setHighlighted([j, j + 1]);
                 if (array[j] > array[j + 1]) {
                     [array[j], array[j + 1]] = [array[j + 1], array[j]];
                     setArr([...array]);
                 }
-                await new Promise((resolve) => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, speedRef.current));
                 setHighlighted([]);
                 }
                 setSorted((prev) => [...prev, array.length - i - 1]);
@@ -58,6 +61,17 @@ const App = () => {
                     value={arrSize}
                     onChange={handleSliderChange}
                     disabled={isSorting}
+                />
+            </div>
+            <div>
+                <label>Speed: {speed}ms</label>
+                <input
+                    type="range"
+                    min="5"
+                    max="300"
+                    step="5"
+                    value={speed}
+                    onChange={(e) => setSpeed(Number(e.target.value))}
                 />
             </div>
         </div>
