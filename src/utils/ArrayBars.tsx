@@ -4,18 +4,19 @@ interface Props {
     arr: Array<number>;
     arrSize: number;
     highlighted: number[];
+    sorted: number[];
 };
 
-const ArrayBars: React.FC<Props> =({arr, arrSize, highlighted}) => (
+const ArrayBars: React.FC<Props> =({arr, arrSize, highlighted, sorted}) => (
     <div className='bars'>
         {arr.map((value: number, idx: number) => (
             <div
                 className='array-bar'
                 key={idx}
                 style={{ 
-                    backgroundColor: highlighted.includes(idx) ? 'red' : 'navy',
                     height: `${value}px`,
-                    width: `${60 / arrSize}%`
+                    width: `${60 / arrSize}%`,
+                    backgroundColor: sorted.includes(idx) ? 'green' : highlighted.includes(idx) ? 'red' : 'navy'
                 }}
                 >
                 </div>

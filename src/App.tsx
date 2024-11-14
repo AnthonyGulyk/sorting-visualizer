@@ -9,6 +9,7 @@ const App = () => {
     const [arrSize, setArrSize] = useState<number>(20);
     const [isSorting, setIsSorting] = useState(false);
     const [highlighted, setHighlighted] = useState<Array<number>>([]);
+    const [sorted, setSorted] = useState<Array<number>>([]);
 
     const newArray = () => {
         if (isSorting) return;
@@ -36,14 +37,16 @@ const App = () => {
                 await new Promise((resolve) => setTimeout(resolve, 100));
                 setHighlighted([]);
                 }
+                setSorted((prev) => [...prev, array.length - i - 1]);
             }
+            setSorted(Array.from({ length: array.length }, (_, index) => index));
             setIsSorting(false);
         };
     
 
     return (
         <div>
-            <ArrayBars arr={arr} arrSize={arrSize} highlighted={highlighted}/>
+            <ArrayBars arr={arr} arrSize={arrSize} highlighted={highlighted} sorted={sorted}/>
             <button onClick={newArray}>Generate New Array</button>
             <button onClick={bubbleSort}>Bubble Sort</button>
             <div>
