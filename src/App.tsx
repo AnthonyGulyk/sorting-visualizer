@@ -27,6 +27,8 @@ const App = () => {
         const newSize = parseInt(e.target.value, 10);
         setArrSize(newSize);
         setArr(generateArray(newSize));
+        setHighlighted([]);
+        setSorted([]);
     };
 
     const bubbleSort = async () => {
