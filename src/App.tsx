@@ -10,7 +10,8 @@ const App = () => {
     const [isSorting, setIsSorting] = useState(false);
     const [highlighted, setHighlighted] = useState<Array<number>>([]);
     const [sorted, setSorted] = useState<Array<number>>([]);
-    const [speed, setSpeed] = useState<number>(100);
+    const maxSpeedSlider = 1000;
+    const [speed, setSpeed] = useState<number>((maxSpeedSlider/2) + 5);
     const speedRef = useRef(speed);
     speedRef.current = speed;
 
@@ -37,7 +38,7 @@ const App = () => {
                     [array[j], array[j + 1]] = [array[j + 1], array[j]];
                     setArr([...array]);
                 }
-                await new Promise((resolve) => setTimeout(resolve, speedRef.current));
+                await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
                 setHighlighted([]);
                 }
                 setSorted((prev) => [...prev, array.length - i - 1]);
@@ -64,11 +65,11 @@ const App = () => {
                 />
             </div>
             <div>
-                <label>Speed: {speed}ms</label>
+                <label>Speed: {maxSpeedSlider - speed + 5}ms</label>
                 <input
                     type="range"
                     min="5"
-                    max="300"
+                    max={maxSpeedSlider}
                     step="5"
                     value={speed}
                     onChange={(e) => setSpeed(Number(e.target.value))}
