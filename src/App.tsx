@@ -25,8 +25,10 @@ const App = () => {
     const bubbleSort = async () => {
         setIsSorting(true);
         let array = [...arr];
+
         for (let i = 0; i < array.length - 1; i++) {
             for (let j = 0; j < array.length - 1; j++) {
+                setHighlighted([j, j + 1]);
                 if (array[j] > array[j + 1]) {
                     [array[j], array[j + 1]] = [array[j + 1], array[j]];
                     setArr([...array]);
@@ -36,12 +38,12 @@ const App = () => {
                 }
             }
             setIsSorting(false);
-        }
+        };
     
 
     return (
         <div>
-            <ArrayBars arr={arr} arrSize={arrSize} />
+            <ArrayBars arr={arr} arrSize={arrSize} highlighted={highlighted}/>
             <button onClick={newArray}>Generate New Array</button>
             <button onClick={bubbleSort}>Bubble Sort</button>
             <div>
