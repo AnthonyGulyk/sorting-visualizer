@@ -70,6 +70,7 @@ const App = () => {
             <ArrayBars arr={arr} arrSize={arrSize} highlighted={highlighted} sorted={sorted}/>
             <button onClick={newArray}>Generate New Array</button>
             <button onClick={bubbleSort}>Bubble Sort</button>
+            <button>Selection Sort</button>
             <button onClick={stopSorting} className="stop-button">Stop</button>
             <div>
                 <label>Array Size: {arrSize}</label>
