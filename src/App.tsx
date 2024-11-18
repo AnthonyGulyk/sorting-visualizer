@@ -60,6 +60,53 @@ const App = () => {
             setIsSorting(false);
         };
 
+    const selectionSort = async () => {
+        if (isSorting) return;
+        setIsSorting(true);
+        setHighlighted([]);
+        setSorted([]);
+        abortSortingRef.current = false;
+
+        let array = [...arr];
+        for (let i = 0; i < array.length; i++) {
+            if (abortSortingRef.current) {
+                setIsSorting(false);
+                return;
+            }
+
+            let minIndex = i;
+            setHighlighted([i]);
+
+            for (let j = i + 1; j < array.length; j++) {
+                if (abortSortingRef.current) {
+                    setIsSorting(false);
+                    return;
+                }
+
+                setHighlighted([minIndex, j]);
+
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+
+                await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
+            }
+
+            if (minIndex !== i) {
+                [array[i], array[minIndex]] = [array[minIndex], array[i]];
+                setArr([...array]);
+            }
+
+            setSorted((prev) => [...prev, i]);
+            setHighlighted([]);
+        }
+
+        setSorted(Array.from({ length: array.length }, (_, index) => index));
+        setIsSorting(false);
+
+    };
+
+
     const stopSorting = () => {
         abortSortingRef.current = true;
     };
@@ -70,7 +117,7 @@ const App = () => {
             <ArrayBars arr={arr} arrSize={arrSize} highlighted={highlighted} sorted={sorted}/>
             <button onClick={newArray}>Generate New Array</button>
             <button onClick={bubbleSort}>Bubble Sort</button>
-            <button>Selection Sort</button>
+            <button onClick={selectionSort}>Selection Sort</button>
             <button onClick={stopSorting} className="stop-button">Stop</button>
             <div>
                 <label>Array Size: {arrSize}</label>
