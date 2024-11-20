@@ -27,6 +27,10 @@ button {
     margin: 5px;
 }
 
+button:hover {
+    background-color: #0056b3;
+}
+
 .stop-button {
     background-color: red;
     color: white;
