@@ -116,34 +116,35 @@ const App = () => {
         <div>
             <ArrayBars arr={arr} arrSize={arrSize} highlighted={highlighted} sorted={sorted}/>
             <div className="btns">
-
                 <button onClick={newArray} className="new-array-button">Generate New Array</button>
                 <button onClick={bubbleSort}>Bubble Sort</button>
                 <button onClick={selectionSort}>Selection Sort</button>
                 <button>Insertion Sort</button>
                 <button onClick={stopSorting} className="stop-button">Stop</button>
             </div>
-            <div>
-                <label>Array Size: {arrSize}</label>
-                <input
-                    type="range"
-                    min="10"
-                    max="90"
-                    value={arrSize}
-                    onChange={handleSliderChange}
-                    disabled={isSorting}
-                />
-            </div>
-            <div>
-                <label>Speed: {maxSpeedSlider - speed + 5}ms</label>
-                <input
-                    type="range"
-                    min="5"
-                    max={maxSpeedSlider}
-                    step="5"
-                    value={speed}
-                    onChange={(e) => setSpeed(Number(e.target.value))}
-                />
+            <div className="sliders">
+                <div>
+                    <label>Array Size: {arrSize}</label>
+                    <input
+                        type="range"
+                        min="10"
+                        max="90"
+                        value={arrSize}
+                        onChange={handleSliderChange}
+                        disabled={isSorting}
+                    />
+                </div>
+                <div>
+                    <label>Speed: {maxSpeedSlider - speed + 5}ms</label>
+                    <input
+                        type="range"
+                        min="5"
+                        max={maxSpeedSlider}
+                        step="5"
+                        value={speed}
+                        onChange={(e) => setSpeed(Number(e.target.value))}
+                    />
+                </div>
             </div>
         </div>
     )
