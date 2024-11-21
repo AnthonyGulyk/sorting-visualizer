@@ -44,7 +44,10 @@ button:hover {
     transform: scale(1.05);
 }
 
-
 .new-array-button {
-    background-color: gray;
+    background-color: #636363;
+}
+
+.new-array-button:hover {
+    background-color: #222222;
 }
