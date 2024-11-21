@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: flex-start;
     margin-top: 15px;
-    height: 100px;
+    height: 80px;
 }
 
 button {
@@ -67,6 +67,7 @@ button:hover {
     width: auto;
 }
 
-.slider-group label {
-    margin-bottom: 5px;
+.slider-group input[type="range"] {
+    height: 20px;
+    width: 250px;
 }
