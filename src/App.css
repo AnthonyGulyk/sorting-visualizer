@@ -66,3 +66,7 @@ button:hover {
     align-items: center;
     width: auto;
 }
+
+.slider-group label {
+    margin-bottom: 5px;
+}
