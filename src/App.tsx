@@ -123,7 +123,7 @@ const App = () => {
                 <button onClick={stopSorting} className="stop-button">Stop</button>
             </div>
             <div className="sliders">
-                <div>
+                <div className="slider-group">
                     <label>Array Size: {arrSize}</label>
                     <input
                         type="range"
@@ -134,7 +134,7 @@ const App = () => {
                         disabled={isSorting}
                     />
                 </div>
-                <div>
+                <div className="slider-group">
                     <label>Speed: {maxSpeedSlider - speed + 5}ms</label>
                     <input
                         type="range"

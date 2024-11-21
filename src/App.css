@@ -59,3 +59,10 @@ button:hover {
     gap: 50px;
     width: 100%;
 }
+
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
