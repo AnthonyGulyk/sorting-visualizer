@@ -11,8 +11,11 @@
 }
 
 .btns {
-    text-align: center;
-    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 15px;
+    height: 100px;
 }
 
 button {
@@ -34,10 +37,14 @@ button:hover {
 
 .stop-button {
     background-color: red;
-    color: white;
 }
 
 .stop-button:hover {
     background-color: #8B0000;
     transform: scale(1.05);
+}
+
+
+.new-array-button {
+    background-color: gray;
 }

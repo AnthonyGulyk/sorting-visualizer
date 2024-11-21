@@ -115,11 +115,14 @@ const App = () => {
     return (
         <div>
             <ArrayBars arr={arr} arrSize={arrSize} highlighted={highlighted} sorted={sorted}/>
-            <button onClick={newArray}>Generate New Array</button>
-            <button onClick={bubbleSort}>Bubble Sort</button>
-            <button onClick={selectionSort}>Selection Sort</button>
-            <button>Insertion Sort</button>
-            <button onClick={stopSorting} className="stop-button">Stop</button>
+            <div className="btns">
+
+                <button onClick={newArray} className="new-array-button">Generate New Array</button>
+                <button onClick={bubbleSort}>Bubble Sort</button>
+                <button onClick={selectionSort}>Selection Sort</button>
+                <button>Insertion Sort</button>
+                <button onClick={stopSorting} className="stop-button">Stop</button>
+            </div>
             <div>
                 <label>Array Size: {arrSize}</label>
                 <input
