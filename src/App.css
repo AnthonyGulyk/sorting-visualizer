@@ -36,3 +36,8 @@ button:hover {
     background-color: red;
     color: white;
 }
+
+.stop-button:hover {
+    background-color: #8B0000;
+    transform: scale(1.05);
+}
