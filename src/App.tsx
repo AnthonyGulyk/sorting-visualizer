@@ -114,6 +114,17 @@ const App = () => {
         abortSortingRef.current = false;
 
         let array = [...arr];
+        for (let i = 0; i < array.length; i++) {
+            if (abortSortingRef.current) {
+                setIsSorting(false);
+                return;
+            }
+
+            setHighlighted([i]);
+        }
+
+        setSorted(Array.from({ length: array.length }, (_, index) => index));
+        setIsSorting(false);
     }
 
 
@@ -129,7 +140,7 @@ const App = () => {
                 <button onClick={newArray} className="new-array-button">Generate New Array</button>
                 <button onClick={bubbleSort}>Bubble Sort</button>
                 <button onClick={selectionSort}>Selection Sort</button>
-                <button>Insertion Sort</button>
+                <button onClick={insertionSort}>Insertion Sort</button>
                 <button onClick={stopSorting} className="stop-button">Stop</button>
             </div>
             <div className="sliders">
