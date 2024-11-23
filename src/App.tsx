@@ -119,14 +119,20 @@ const App = () => {
                 setIsSorting(false);
                 return;
             }
-             let j = i - 1;
-
-             while (j >= 0 && array[j] > array[i]) {
+            let j = i - 1;
+            setHighlighted([i, j])
+            console.log(j)
+            console.log('array[j] = ', array[j], ', array[i] =', array[i], 'j =',j,'i =',i)
+            while (array[j] > array[i]) {
                 [array[i], array[j]] = [array[j], array[i]];
+                console.log('i was triggered, i,j = ', i, ',', j)
+                j = j - 1;
+                i = i - 1;
                 setArr([...array]);
-             }
+            }
             
-            setHighlighted([i]);
+            await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
+
         }
 
         setSorted(Array.from({ length: array.length }, (_, index) => index));
