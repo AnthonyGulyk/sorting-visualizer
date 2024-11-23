@@ -106,6 +106,16 @@ const App = () => {
 
     };
 
+    const insertionSort = async () => {
+        if (isSorting) return;
+        setIsSorting(true);
+        setHighlighted([]);
+        setSorted([]);
+        abortSortingRef.current = false;
+
+        let array = [...arr];
+    }
+
 
     const stopSorting = () => {
         abortSortingRef.current = true;
