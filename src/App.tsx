@@ -114,12 +114,18 @@ const App = () => {
         abortSortingRef.current = false;
 
         let array = [...arr];
-        for (let i = 0; i < array.length; i++) {
+        for (let i = 1; i < array.length; i++) {
             if (abortSortingRef.current) {
                 setIsSorting(false);
                 return;
             }
+             let j = i - 1;
 
+             while (j >= 0 && array[j] > array[i]) {
+                [array[i], array[j]] = [array[j], array[i]];
+                setArr([...array]);
+             }
+            
             setHighlighted([i]);
         }
 
