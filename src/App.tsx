@@ -142,9 +142,71 @@ const App = () => {
         setIsSorting(false);
     }
 
+    const mergeSort = async () => { 
+        if (isSorting) return;
+        setIsSorting(true);
+        setHighlighted([]);
+        setSorted([]);
+        abortSortingRef.current = false; 
+
+        let array = [...arr];
+        await divideAndMerge(array, 0, array.length - 1);
+        setSorted(Array.from({ length: array.length }, (_, index) => index));
+        setIsSorting(false);
+    };
+
+    const divideAndMerge = async (array: number[], start: number, end: number) => {
+        if (start >= end) return;
+
+        const mid = Math.floor((start + end) / 2);
+
+        await divideAndMerge(array, start, mid);
+        await divideAndMerge(array, mid+1, end);
+
+        await merge(array, start, mid, end);
+    };
+
+    const merge = async (array: number[], start: number, mid: number, end: number) => {
+        const left = array.slice(start, mid + 1);
+        const right = array.slice(mid + 1, end + 1);
+
+        let i = 0, j = 0, k = start;
+
+        while (i < left.length && j < right.length) {
+            setHighlighted([start + i, mid + 1 + j]);
+            await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
+
+            if (left[i] <= right [j]) {
+                array[k] = left[i];
+                i++;
+            } else {
+                array[k] = right[j];
+                j++;
+            }
+            k++;
+            setArr([...array]);
+        }
+
+        while (i < left.length) {
+            array[k] = left[i];
+            i++;
+            k++;
+            setArr([...array]);
+            await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
+        }
+
+        while (j < right.length) {
+            array[k] = right[j];
+            j++;
+            k++;
+            setArr([...array]);
+            await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
+        }
+        setHighlighted([]);
+    }
 
     const stopSorting = () => {
-        abortSortingRef.current = true;
+    abortSortingRef.current = true;
     };
     
 
@@ -156,7 +218,7 @@ const App = () => {
                 <button onClick={bubbleSort}>Bubble Sort</button>
                 <button onClick={selectionSort}>Selection Sort</button>
                 <button onClick={insertionSort}>Insertion Sort</button>
-                <button>Merge Sort</button>
+                <button onClick={mergeSort}>Merge Sort</button>
                 <button onClick={stopSorting} className="stop-button">Stop</button>
             </div>
             <div className="sliders">
