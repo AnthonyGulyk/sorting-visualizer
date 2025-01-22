@@ -156,6 +156,7 @@ const App = () => {
                 <button onClick={bubbleSort}>Bubble Sort</button>
                 <button onClick={selectionSort}>Selection Sort</button>
                 <button onClick={insertionSort}>Insertion Sort</button>
+                <button>Merge Sort</button>
                 <button onClick={stopSorting} className="stop-button">Stop</button>
             </div>
             <div className="sliders">
