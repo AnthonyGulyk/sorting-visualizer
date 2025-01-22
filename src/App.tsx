@@ -123,9 +123,9 @@ const App = () => {
             setHighlighted([i, j])
             console.log(j)
             console.log('array[j] = ', array[j], ', array[i] =', array[i], 'j =',j,'i =',i)
-            while (array[j] > array[i] && j >= 0) {
-                [array[i], array[j]] = [array[j], array[i]];
-                console.log('i was triggered, i,j = ', i, ',', j)
+            while (array[j] > array[j+1] && j >= 0) {
+                [array[j+1], array[j]] = [array[j], array[j+1]];
+                console.log('i was triggered, i,j = ', i, ',', j, 'For the lengths array[i],array[j]')
                 j = j - 1;
                 setArr([...array]);
             }
