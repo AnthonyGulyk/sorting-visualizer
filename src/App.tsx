@@ -114,22 +114,24 @@ const App = () => {
         abortSortingRef.current = false;
 
         let array = [...arr];
-        for (let i = 1; i < array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
             if (abortSortingRef.current) {
                 setIsSorting(false);
                 return;
             }
+
             let j = i - 1;
-            setHighlighted([i, j])
-            console.log(j)
-            console.log('array[j] = ', array[j], ', array[i] =', array[i], 'j =',j,'i =',i)
+            setHighlighted([i])
+            await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
             while (array[j] > array[j+1] && j >= 0) {
+                if (isSorting) return;
                 [array[j+1], array[j]] = [array[j], array[j+1]];
-                console.log('i was triggered, i,j = ', i, ',', j, 'For the lengths array[i],array[j]')
                 j = j - 1;
+                setHighlighted([i,j])
                 setArr([...array]);
+                await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
             }
-            
+            setSorted((prev) => [...prev, i]);
             await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
 
         }
