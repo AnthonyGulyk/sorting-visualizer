@@ -137,8 +137,8 @@ const App = () => {
                 await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
             }
         }
-
         setSorted(Array.from({ length: array.length }, (_, index) => index));
+        setHighlighted([])
         setIsSorting(false);
     }
 
