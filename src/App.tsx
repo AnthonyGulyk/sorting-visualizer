@@ -123,17 +123,19 @@ const App = () => {
             let j = i - 1;
             setHighlighted([i])
             await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
+            setSorted((prev) => [...prev, i]);
             while (array[j] > array[j+1] && j >= 0) {
-                if (isSorting) return;
+                if (abortSortingRef.current) {
+                    setIsSorting(false);
+                    return;
+                }
+                
                 [array[j+1], array[j]] = [array[j], array[j+1]];
                 j = j - 1;
-                setHighlighted([i,j])
+                setHighlighted([j+1])
                 setArr([...array]);
                 await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
             }
-            setSorted((prev) => [...prev, i]);
-            await new Promise((resolve) => setTimeout(resolve, maxSpeedSlider - speedRef.current));
-
         }
 
         setSorted(Array.from({ length: array.length }, (_, index) => index));

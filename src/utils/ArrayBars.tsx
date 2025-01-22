@@ -16,7 +16,7 @@ const ArrayBars: React.FC<Props> =({arr, arrSize, highlighted, sorted}) => (
                 style={{ 
                     height: `${value}px`,
                     width: `${60 / arrSize}%`,
-                    backgroundColor: sorted.includes(idx) ? 'green' : highlighted.includes(idx) ? 'red' : 'navy'
+                    backgroundColor: highlighted.includes(idx) ? 'red' : sorted.includes(idx) ? 'green' : 'navy'
                 }}
                 >
                 </div>
