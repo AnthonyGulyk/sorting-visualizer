@@ -219,6 +219,7 @@ const App = () => {
                 <button onClick={selectionSort}>Selection Sort</button>
                 <button onClick={insertionSort}>Insertion Sort</button>
                 <button onClick={mergeSort}>Merge Sort</button>
+                <button>Quick Sort</button>
                 <button onClick={stopSorting} className="stop-button">Stop</button>
             </div>
             <div className="sliders">
