@@ -215,6 +215,71 @@ const App = () => {
         setHighlighted([]);
     }
 
+    const quickSort = async () => {
+        if (isSorting) return;
+        setIsSorting(true);
+        setHighlighted([]);
+        setSorted([]);
+        abortSortingRef.current = false;
+
+        let array = [...arr];
+        await quickSortHelper(array, 0, array.length - 1);
+
+        if (!abortSortingRef.current) {
+            setSorted(Array.from({ length: array.length }, (_, index) => index));
+        }
+
+        setHighlighted([]);
+        setIsSorting(false);
+    };
+
+    const quickSortHelper = async (array: number[], low: number, high: number) => {
+        if (low >= high || abortSortingRef.current) return;
+
+        const pivotIndex = await partition(array, low, high);
+        
+        // Mark pivot as sorted once placed correctly
+        setSorted((prev) => [...prev, pivotIndex]);
+
+        await quickSortHelper(array, low, pivotIndex - 1);
+        await quickSortHelper(array, pivotIndex + 1, high);
+    };
+
+    const partition = async (array: number[], low: number, high: number): Promise<number> => {
+        const pivot = array[high]; // Pivot is the last element
+        let i = low - 1;
+
+        // Initial highlight of pivot
+        setHighlighted([high]);  
+        await sleep();
+
+        for (let j = low; j < high; j++) {
+            if (abortSortingRef.current) return high;
+
+            // Highlight pivot, left pointer, and right pointer
+            setHighlighted([i + 1, j, high]);
+            await sleep();
+
+            if (array[j] < pivot) {
+                i++;
+                [array[i], array[j]] = [array[j], array[i]];
+                setArr([...array]);
+                await sleep();
+            }
+        }
+
+        [array[i + 1], array[high]] = [array[high], array[i + 1]];
+        setArr([...array]);
+        setHighlighted([]); // Clear highlights after partition
+        await sleep();
+        return i + 1;
+    };
+
+    const sleep = (ms = maxSpeedSlider - speedRef.current) => 
+        new Promise((resolve) => setTimeout(resolve, ms));
+
+
+
     const stopSorting = () => {
     abortSortingRef.current = true;
     };
@@ -229,7 +294,7 @@ const App = () => {
                 <button onClick={selectionSort}>Selection Sort</button>
                 <button onClick={insertionSort}>Insertion Sort</button>
                 <button onClick={mergeSort}>Merge Sort</button>
-                <button>Quick Sort</button>
+                <button onClick={quickSort}>Quick Sort</button>
                 <button onClick={stopSorting} className="stop-button">Stop</button>
             </div>
             <div className="sliders">
