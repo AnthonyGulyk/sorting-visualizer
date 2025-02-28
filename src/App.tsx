@@ -151,11 +151,17 @@ const App = () => {
 
         let array = [...arr];
         await divideAndMerge(array, 0, array.length - 1);
-        setSorted(Array.from({ length: array.length }, (_, index) => index));
+        if (abortSortingRef.current = false) {
+            setSorted(Array.from({ length: array.length }, (_, index) => index));
+        }
         setIsSorting(false);
     };
 
     const divideAndMerge = async (array: number[], start: number, end: number) => {
+        if (abortSortingRef.current) {
+            setIsSorting(false);
+            return;
+        }
         if (start >= end) return;
 
         const mid = Math.floor((start + end) / 2);
@@ -167,6 +173,10 @@ const App = () => {
     };
 
     const merge = async (array: number[], start: number, mid: number, end: number) => {
+        if (abortSortingRef.current) {
+            setIsSorting(false);
+            return;
+        }
         const left = array.slice(start, mid + 1);
         const right = array.slice(mid + 1, end + 1);
 
