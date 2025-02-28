@@ -238,7 +238,6 @@ const App = () => {
 
         const pivotIndex = await partition(array, low, high);
         
-        // Mark pivot as sorted once placed correctly
         setSorted((prev) => [...prev, pivotIndex]);
 
         await quickSortHelper(array, low, pivotIndex - 1);
@@ -246,17 +245,15 @@ const App = () => {
     };
 
     const partition = async (array: number[], low: number, high: number): Promise<number> => {
-        const pivot = array[high]; // Pivot is the last element
+        const pivot = array[high];
         let i = low - 1;
 
-        // Initial highlight of pivot
         setHighlighted([high]);  
         await sleep();
 
         for (let j = low; j < high; j++) {
             if (abortSortingRef.current) return high;
 
-            // Highlight pivot, left pointer, and right pointer
             setHighlighted([i + 1, j, high]);
             await sleep();
 
@@ -270,14 +267,13 @@ const App = () => {
 
         [array[i + 1], array[high]] = [array[high], array[i + 1]];
         setArr([...array]);
-        setHighlighted([]); // Clear highlights after partition
+        setHighlighted([]);
         await sleep();
         return i + 1;
     };
 
     const sleep = (ms = maxSpeedSlider - speedRef.current) => 
         new Promise((resolve) => setTimeout(resolve, ms));
-
 
 
     const stopSorting = () => {
