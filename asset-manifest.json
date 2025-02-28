@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/sorting-visualizer/static/css/main.2d8ec7a3.css",
-    "main.js": "/sorting-visualizer/static/js/main.6148479a.js",
-    "static/js/453.c190135e.chunk.js": "/sorting-visualizer/static/js/453.c190135e.chunk.js",
-    "index.html": "/sorting-visualizer/index.html",
-    "main.2d8ec7a3.css.map": "/sorting-visualizer/static/css/main.2d8ec7a3.css.map",
-    "main.6148479a.js.map": "/sorting-visualizer/static/js/main.6148479a.js.map",
-    "453.c190135e.chunk.js.map": "/sorting-visualizer/static/js/453.c190135e.chunk.js.map"
+    "main.css": "/www.anthonygulyk.com/static/css/main.2d8ec7a3.css",
+    "main.js": "/www.anthonygulyk.com/static/js/main.b2a652ce.js",
+    "static/js/453.c190135e.chunk.js": "/www.anthonygulyk.com/static/js/453.c190135e.chunk.js",
+    "index.html": "/www.anthonygulyk.com/index.html",
+    "main.2d8ec7a3.css.map": "/www.anthonygulyk.com/static/css/main.2d8ec7a3.css.map",
+    "main.b2a652ce.js.map": "/www.anthonygulyk.com/static/js/main.b2a652ce.js.map",
+    "453.c190135e.chunk.js.map": "/www.anthonygulyk.com/static/js/453.c190135e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2d8ec7a3.css",
-    "static/js/main.6148479a.js"
+    "static/js/main.b2a652ce.js"
   ]
 }
