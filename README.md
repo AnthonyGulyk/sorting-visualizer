@@ -11,4 +11,4 @@ The algorithims that are visualized are:
 - Merge Sort
 - Quick Sort
 
-![image](https://github.com/user-attachments/assets/4e3aec63-bac6-491e-ba80-2245025bf841)
+![sorting-visualizer](https://github.com/user-attachments/assets/9950b91e-77cb-4d41-a853-4e3bb06928a0)
